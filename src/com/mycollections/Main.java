@@ -64,10 +64,8 @@ class Geeks {
                     // Summarizing.
                     number+=number1;
                 }
-            
-            }
-                
-        
+            }   
+        }
         return number;
     }
 }
