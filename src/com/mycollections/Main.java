@@ -1,131 +1,93 @@
 /**
- *  Task to print greater numbers from array. And smaller numbers than given number.
- *  If no numbers according two conditions - print "-1".
+ *  Task from GeeksFromGeeks: You are given two arrays of size n1 and n2.
+ *  Your task is to find all the elements that are common to both the arrays and sum them.
+ *  If there are no common elements the output would be 0.
  */
-
 package com.mycollections;
 
+import java.util.HashSet;
 import java.util.Iterator;
-import java.util.TreeSet;
+import java.util.Set;
+
+/**
+ *  Geeks class.
+ */
+class Geeks {
+    public static int commonSum(int n1, int n2, int arr1[], int arr2[]) {
+        
+        // Creating integer number.
+        int number = 0;
+        
+        // Creating set of numbers from arr1.
+        Set<Integer> set1 = new HashSet<>();
+        
+        // Creating set of numbers from arr2.
+        Set<Integer> set2 = new HashSet<>();
+        
+        
+        // Iterating through arr1 and adding elements to set1.
+        for (int i = 0; i < n1; i++) {
+            
+            set1.add(arr1[i]);
+            
+        }
+        
+        // Iterating through arr and adding elements to set2.
+        for (int j = 0; j < n2; j++) {
+                
+            set2.add(arr2[j]);
+                
+        }
+        
+        // Creating iterator for set1.
+        Iterator it1 = set1.iterator();
+        
+        
+        // Comparing elements from both sets and summarizing them.
+        while (it1.hasNext()) {
+            
+            // Integer first number.
+            int number1 =(int) it1.next();
+            
+            // Creating iterator for set2.
+            Iterator it2 = set2.iterator();
+            
+            // Checking if elements if available.
+            while (it2.hasNext()) {
+                
+                // Integer second number.
+                int number2 = (int)it2.next();
+                
+                // Comparing elements.
+                if (number1 == number2) {
+                    
+                    // Summarizing.
+                    number+=number1;
+                }
+            
+            }
+                
+        
+        return number;
+    }
+}
 
 /**
  *  Main class.
  */
 public class Main {
 
-    // Function to find elements greater than or equal to number k.
-    public static void greaterKSorted(int arr[], int k) {
-
-        // Creating TreeSet.
-        TreeSet<Integer> set = new TreeSet<>();
-
-        // Adding all elements of given array to set to exclude duplicates.
-        for (int h = 0; h < arr.length; h++){
-            set.add(arr[h]);
-        }
-
-        // Recreating array with new size.
-        arr = new int[set.size()];
-
-        // Fill array with iterator with elements from set.
-        int index = 0;
-        Iterator it = set.iterator();
-
-        while(it.hasNext()){
-
-            arr[index] = (int)it.next();
-            index++;
-
-        }
-
-        // Printing the result to console.
-        for (int i = 0; i < arr.length; i++) {
-
-            // Condition for the last element.
-            if (arr[arr.length-1] < k) {
-
-                System.out.print(-1);
-                break;
-
-            }
-
-            // Condition from task.
-            if (arr[i] >= k) {
-
-                System.out.print(arr[i] + " ");
-
-            }
-        }
-
-        System.out.println();
-
-    }
-
-    // Function to find element less than K
-    public static void smallerKSorted(int arr[], int k) {
-
-        // Creating TreeSet.
-        TreeSet<Integer> set = new TreeSet<>();
-
-        // Adding all elements of given array to set to exclude duplicates.
-        for (int h = 0; h < arr.length; h++){
-            set.add(arr[h]);
-        }
-
-        // Recreating array with new size.
-        arr = new int[set.size()];
-
-        // Fill array with iterator with elements from set.
-        int index = 0;
-        Iterator it = set.iterator();
-
-        while(it.hasNext()){
-            arr[index] = (int)it.next();
-            index++;
-        }
-
-        // Printing the result to console.
-        for (int i = 0; i < arr.length; i++) {
-
-            // Condition for the first element.
-            if (arr[0] > k) {
-
-                System.out.print(-1);
-                break;
-
-            }
-
-            // Condition from task.
-            if (arr[i] <= k) {
-
-                System.out.print(arr[i] + " ");
-
-            }
-        }
-
-        System.out.println();
-
-    }
-
-
-
     // Main method to drive java program.
     public static void main(String[] args) {
 
-        // Array to test greaterKSorted(int arr[], int k) and smallerKSorted(int arr[], int k) methods.
-        int[] array = new int[]{2, 3, 1, 7, 8, 9, 9, 0, 4, 3, 2, 2, 7, 8};
+        // Creating an array of integers.
+        int[] arr1 = {1, 2, 4, 2, 5, 2, 8, 9, 11};
 
-        // Calling method greaterKSorted(int arr[], int k)
-        Main.greaterKSorted(array, 5);
+        // Creating an array of integers.
+        int[] arr2 = {5, 2, 8, 9, 11, 8, 7, 4};
 
-        // Calling method smallerKSorted(int arr[], int k)
-        Main.smallerKSorted(array, 5);
+        // Calling method commonSum() and printing the result to console.
+        System.out.println(Geeks.commonSum(9, 8, arr1, arr2));
 
-        // Calling method greaterKSorted(int arr[], int k)
-        Main.greaterKSorted(array, 12);
-
-        // Calling method smallerKSorted(int arr[], int k)
-        Main.smallerKSorted(array, -2);
     }
-
 }
